@@ -9,12 +9,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f84f0bcb39c9a5c5fb99/maintainability)](https://codeclimate.com/github/eclass/semantic-release-ssh-commands/maintainability)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-> [semantic-release](https://github.com/semantic-release/semantic-release) plugin to deploy app
+> [semantic-release](https://github.com/semantic-release/semantic-release) plugin to deploy app with ssh commands
 
 | Step               | Description                                                                                 |
 |--------------------|---------------------------------------------------------------------------------------------|
-| `verifyConditions` | Verify the presence of the `CUSTOM_ENV` environment variable. |
-| `publish`          | Deploy app.                                                                   |
+| `verifyConditions` | Verify the presence of the `SSH_USER`, `SSH_HOST` environment variables. |
+| `publish`          | Deploy app over ssh.                                                                   |
 
 ## Install
 
@@ -33,7 +33,13 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/gitlab",
-    "@eclass/semantic-release-ssh-commands"
+    [
+      "@eclass/semantic-release-ssh-commands",
+      {
+        "verifyConditionsCmd": "sh /usr/local/verifyConditionsCmd.sh",
+        "publishCmd": "sh /usr/local/publishCmd.sh",
+      }
+    ]
   ]
 }
 ```
@@ -44,7 +50,17 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 | Variable             | Description                                                       |
 | -------------------- | ----------------------------------------------------------------- |
-| `CUSTOM_ENV` | A custom env var |
+| `SSH_USER` | A ssh user |
+| `SSH_HOST` | A ssh host |
+| `SSH_PRIVATE_KEY` | Content of private ssh key (Optional) |
+
+### Options
+
+| Variable  | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| `verifyConditionsCmd` | A command to verificate. Required. Ex: "sh /usr/local/verifyConditionsCmd.sh" |
+| `publishCmd` | A command to publish new release. This step inject VERSIOn environment variable to use in you command. Required. Ex: "sh /usr/local/publishCmd.sh" |
+
 
 ### Examples
 
@@ -55,7 +71,13 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/gitlab",
-    "@eclass/semantic-release-ssh-commands"
+    [
+      "@eclass/semantic-release-ssh-commands",
+      {
+        "verifyConditionsCmd": "sh /usr/local/verifyConditionsCmd.sh",
+        "publishCmd": "sh /usr/local/publishCmd.sh",
+      }
+    ]
   ]
 }
 ```
@@ -65,6 +87,14 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 release:
   image: node:alpine
   stage: release
+  before_script:
+    - apk add --no-cache git openssh-client
+    - mkdir -p /root/.ssh
+    - chmod 0700 /root/.ssh
+    - ssh-keyscan $SSH_HOST > /root/.ssh/known_hosts
+    - echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - echo "    IdentityFile /root/.ssh/id_rsa" >> /etc/ssh/ssh_config
   script:
     - npx semantic-release
   only:
@@ -88,6 +118,13 @@ jobs:
     - stage: test
       script: npm t
     - stage: deploy
+      addons:
+        ssh_known_hosts: $SSH_HOST
+      before_deploy:
+        - eval "$(ssh-agent -s)"
+        - echo "$SSH_PRIVATE_KEY" > /tmp/deploy_rsa
+        - chmod 600 /tmp/deploy_rsa
+        - ssh-add /tmp/deploy_rsa
       script: npx semantic-release
 
 ```
