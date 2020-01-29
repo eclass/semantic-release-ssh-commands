@@ -1,5 +1,5 @@
 {
-  "name": "@eclass/semantic-release-custom-plugin",
+  "name": "@eclass/semantic-release-ssh-commands",
   "version": "1.0.0",
   "description": "semantic-release plugin to deploy app",
   "main": "src/index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eclass/template-semantic-release-plugin.git"
+    "url": "https://github.com/eclass/semantic-release-ssh-commands.git"
   },
   "keywords": [
     "release",
@@ -22,9 +22,9 @@
   "author": "Leonardo Gatica <lgatica@protonmail.com> (https://about.me/lgatica)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eclass/template-semantic-release-plugin/issues"
+    "url": "https://github.com/eclass/semantic-release-ssh-commands/issues"
   },
-  "homepage": "https://github.com/eclass/template-semantic-release-plugin#readme",
+  "homepage": "https://github.com/eclass/semantic-release-ssh-commands#readme",
   "dependencies": {
     "@semantic-release/error": "^2.1.0"
   },
