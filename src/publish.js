@@ -22,7 +22,6 @@ module.exports = async (pluginConfig, ctx) => {
     }
     const command = `export VERSION=${ctx.nextRelease.version};\n${pluginConfig.publishCmd}`
     await exec(command, options)
-    return undefined
   } catch (err) {
     ctx.message = err.message
     throw getError('ESSHCOMMAND', ctx)
