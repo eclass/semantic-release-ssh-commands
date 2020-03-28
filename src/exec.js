@@ -10,9 +10,8 @@ const exec = require('ssh-exec')
  */
 module.exports = (command, options) =>
   new Promise((resolve, reject) => {
-    exec(command, options, (err, stdout, stderr) => {
+    exec(command, options, (err, stdout) => {
       if (err) return reject(err)
-      if (stderr) return reject(new Error(stderr))
       resolve(stdout)
     })
   })
