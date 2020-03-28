@@ -21,7 +21,8 @@ module.exports = async (pluginConfig, ctx) => {
       options.key = ctx.env.SSH_PRIVATE_KEY
     }
     const command = `export VERSION=${ctx.nextRelease.version};\n${pluginConfig.publishCmd}`
-    await exec(command, options)
+    const output = await exec(command, options)
+    process.stdout.write(output)
   } catch (err) {
     ctx.message = err.message
     throw getError('ESSHCOMMAND', ctx)
