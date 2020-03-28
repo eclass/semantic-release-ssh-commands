@@ -9,7 +9,7 @@
     "test": "nyc mocha test"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=10"
   },
   "repository": {
     "type": "git",
