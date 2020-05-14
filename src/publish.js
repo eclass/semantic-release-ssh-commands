@@ -9,7 +9,7 @@ const exec = require('./exec')
 /**
  * @param {Config} pluginConfig -
  * @param {Context} ctx -
- * @returns {Promise<string>} -
+ * @returns {Promise<void>} -
  * @example
  * publish(pluginConfig, ctx)
  */
