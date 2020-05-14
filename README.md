@@ -1,7 +1,7 @@
 # @eclass/semantic-release-ssh-commands
 
 [![npm](https://img.shields.io/npm/v/@eclass/semantic-release-ssh-commands.svg)](https://www.npmjs.com/package/@eclass/semantic-release-ssh-commands)
-[![build](https://img.shields.io/travis/eclass/semantic-release-ssh-commands.svg)](https://travis-ci.org/eclass/semantic-release-ssh-commands)
+![Node.js CI](https://github.com/eclass/semantic-release-ssh-commands/workflows/Node.js%20CI/badge.svg)
 [![downloads](https://img.shields.io/npm/dt/@eclass/semantic-release-ssh-commands.svg)](https://www.npmjs.com/package/@eclass/semantic-release-ssh-commands)
 [![dependencies](https://img.shields.io/david/eclass/semantic-release-ssh-commands.svg)](https://david-dm.org/eclass/semantic-release-ssh-commands)
 [![devDependency Status](https://img.shields.io/david/dev/eclass/semantic-release-ssh-commands.svg)](https://david-dm.org/eclass/semantic-release-ssh-commands#info=devDependencies)
