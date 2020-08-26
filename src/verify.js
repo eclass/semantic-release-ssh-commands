@@ -1,3 +1,4 @@
+const { template } = require('lodash')
 const AggregateError = require('aggregate-error')
 const getError = require('./get-error')
 const exec = require('./exec')
@@ -30,7 +31,11 @@ module.exports = async (pluginConfig, ctx) => {
       if (ctx.env.SSH_PRIVATE_KEY) {
         options.key = ctx.env.SSH_PRIVATE_KEY
       }
-      return await exec(pluginConfig.verifyConditionsCmd, options)
+      const script = template(pluginConfig.verifyConditionsCmd)({
+        pluginConfig,
+        ...ctx
+      })
+      return await exec(script, options)
     } catch (err) {
       ctx.message = err.message
       throw new AggregateError([getError('ESSHCOMMAND', ctx)])

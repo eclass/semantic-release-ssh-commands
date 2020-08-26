@@ -1,3 +1,4 @@
+const { template } = require('lodash')
 const getError = require('./get-error')
 const exec = require('./exec')
 
@@ -20,7 +21,8 @@ module.exports = async (pluginConfig, ctx) => {
     if (ctx.env.SSH_PRIVATE_KEY) {
       options.key = ctx.env.SSH_PRIVATE_KEY
     }
-    const output = await exec(pluginConfig.publishCmd, options)
+    const script = template(pluginConfig.publishCmd)({ pluginConfig, ...ctx })
+    const output = await exec(script, options)
     process.stdout.write(output)
   } catch (err) {
     ctx.message = err.message
