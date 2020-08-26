@@ -20,8 +20,7 @@ module.exports = async (pluginConfig, ctx) => {
     if (ctx.env.SSH_PRIVATE_KEY) {
       options.key = ctx.env.SSH_PRIVATE_KEY
     }
-    const command = `export VERSION=${ctx.nextRelease.version};\n${pluginConfig.publishCmd}`
-    const output = await exec(command, options)
+    const output = await exec(pluginConfig.publishCmd, options)
     process.stdout.write(output)
   } catch (err) {
     ctx.message = err.message
