@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/eclass/semantic-release-ssh-commands/compare/v1.0.1...v1.0.2) (2020-08-26)
+
+
+### Bug Fixes
+
+* **publish:** remove custom export version ([eab2b68](https://github.com/eclass/semantic-release-ssh-commands/commit/eab2b68165de944168ca6e60c1d7470d175bc690))
+
 ## [1.0.1](https://github.com/eclass/semantic-release-ssh-commands/compare/v1.0.0...v1.0.1) (2020-05-14)
 
 
