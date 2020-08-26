@@ -28,7 +28,7 @@
   "dependencies": {
     "@semantic-release/error": "^2.1.0",
     "lodash": "^4.17.20",
-    "ssh-exec": "2.0.0"
+    "ssh-exec": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "9.1.2",
