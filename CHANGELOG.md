@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/eclass/semantic-release-ssh-commands/compare/v1.0.2...v1.0.3) (2020-08-26)
+
+
+### Bug Fixes
+
+* **deps:** fix version of ssh-exec ([1aa1d05](https://github.com/eclass/semantic-release-ssh-commands/commit/1aa1d05be74f034bb0edeb6f39e9357eb9153285))
+* **script:** enable interpolate variables in command string ([82607b0](https://github.com/eclass/semantic-release-ssh-commands/commit/82607b0cfa31f521893dc6e5ff7d3303b7d6f85b))
+
 ## [1.0.2](https://github.com/eclass/semantic-release-ssh-commands/compare/v1.0.1...v1.0.2) (2020-08-26)
 
 
