@@ -11,10 +11,10 @@
 
 > [semantic-release](https://github.com/semantic-release/semantic-release) plugin to deploy app with ssh commands
 
-| Step               | Description                                                                                 |
-|--------------------|---------------------------------------------------------------------------------------------|
+| Step               | Description                                                              |
+|--------------------|--------------------------------------------------------------------------|
 | `verifyConditions` | Verify the presence of the `SSH_USER`, `SSH_HOST` environment variables. |
-| `publish`          | Deploy app over ssh.                                                                   |
+| `publish`          | Deploy app over ssh.                                                     |
 
 ## Install
 
@@ -36,30 +36,32 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     [
       "@eclass/semantic-release-ssh-commands",
       {
-        "verifyConditionsCmd": "sh /usr/local/verifyConditionsCmd.sh",
-        "publishCmd": "sh /usr/local/publishCmd.sh",
+        "verifyConditionsCmd": "bash verify.sh",
+        "publishCmd": "bash deploy.sh ${nextRelease.version}",
       }
     ]
   ]
 }
 ```
 
+**NOTE: verify.sh and deploy.sh are script located in remote server**
+
 ## Configuration
 
 ### Environment variables
 
-| Variable             | Description                                                       |
-| -------------------- | ----------------------------------------------------------------- |
-| `SSH_USER` | A ssh user |
-| `SSH_HOST` | A ssh host |
+| Variable          | Description                           |
+| ----------------- | ------------------------------------- |
+| `SSH_USER`        | A ssh user                            |
+| `SSH_HOST`        | A ssh host                            |
 | `SSH_PRIVATE_KEY` | Content of private ssh key (Optional) |
 
 ### Options
 
-| Variable  | Description                                                       |
-| --------- | ----------------------------------------------------------------- |
-| `verifyConditionsCmd` | A command to verificate. Required. Ex: "sh /usr/local/verifyConditionsCmd.sh" |
-| `publishCmd` | A command to publish new release. This step inject VERSIOn environment variable to use in you command. Required. Ex: "sh /usr/local/publishCmd.sh" |
+| Variable              | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
+| `verifyConditionsCmd` | A command to verificate. Required. Ex: "docker pull myuser/myapp" or "bash verify.sh" |
+| `publishCmd`          | A command to publish new release. Required. Ex: "bash deploy.sh ${nextRelease.version}" |
 
 
 ### Examples
@@ -74,8 +76,8 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     [
       "@eclass/semantic-release-ssh-commands",
       {
-        "verifyConditionsCmd": "sh /usr/local/verifyConditionsCmd.sh",
-        "publishCmd": "sh /usr/local/publishCmd.sh",
+        "verifyConditionsCmd": "bash verify.sh",
+        "publishCmd": "bash deploy.sh ${nextRelease.version}"
       }
     ]
   ]
