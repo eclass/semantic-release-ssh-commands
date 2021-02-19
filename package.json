@@ -40,7 +40,7 @@
     "@types/chai": "4.2.15",
     "@types/lodash": "4.14.168",
     "@types/mocha": "8.2.1",
-    "@types/node": "13.13.44",
+    "@types/node": "13.13.45",
     "@types/semantic-release": "17.2.0",
     "chai": "4.3.0",
     "eslint": "7.20.0",
