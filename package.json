@@ -41,7 +41,7 @@
     "@types/lodash": "4.14.173",
     "@types/mocha": "8.2.3",
     "@types/node": "13.13.52",
-    "@types/semantic-release": "17.2.1",
+    "@types/semantic-release": "17.2.2",
     "chai": "4.3.4",
     "eslint": "7.32.0",
     "eslint-plugin-array-func": "3.1.7",
