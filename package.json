@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/eclass/semantic-release-ssh-commands#readme",
   "dependencies": {
-    "@semantic-release/error": "^2.1.0",
+    "@semantic-release/error": "^4.0.0",
     "lodash": "^4.17.20",
     "ssh-exec": "^2.0.0"
   },
@@ -35,8 +35,8 @@
     "@commitlint/config-conventional": "11.0.0",
     "@eclass/eslint-config": "2.0.1",
     "@eclass/semantic-release-npm-github-config": "3.0.1",
-    "@semantic-release/changelog": "5.0.1",
-    "@semantic-release/git": "9.0.1",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
     "@types/chai": "4.3.4",
     "@types/lodash": "4.14.192",
     "@types/mocha": "8.2.3",
